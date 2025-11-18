@@ -58,7 +58,11 @@ export default function RegisterPage() {
     }
 
     try {
-      const { confirmPassword, ...registerData } = formData
+      const { confirmPassword, ...rest } = formData
+      const registerData = {
+        ...rest,
+        password_confirm: confirmPassword,
+      }
       await register(registerData)
     } catch (err: any) {
       setError(err.message || 'Registration failed')
